@@ -15,3 +15,7 @@ body{
 form {
     background-color: pink;
 }
+
+.alert {
+    background-color: red;
+}
