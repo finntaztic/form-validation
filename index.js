@@ -1,58 +1,46 @@
-
-// const email = document.querySelector('#email');
-// const emailErr = document.getElementById('email-error');
-
-// const country = document.querySelector('#country');
-// const countryErr = document.querySelector('#country-error');
+const emailInput = document.querySelector('#email');
+const countryInput = document.querySelector('#country');
+const postalInput = document.querySelector('#postal');
 
 
-// function validateForm (){
-
-//     //validates email
-//     email.addEventListener('input', () => {
-//         if (email.value !== '' && !email.value.includes('@') || !email.value.includes('.')){
-//             emailErr.textContent = 'Please enter valid email address';
-//             email.classList.add ('alert');
-//         } else {
-//             emailErr.textContent = '';
-//             email.classList.remove ('alert')
-//         }
-//     })
-
-//     //validates country
-
-
-// }
-// validateForm();
-
-// //click submit btn, validate email by asking the classlist
-
-// const submitBtn = document.querySelector('button');
-// console.log(submitBtn);
-
-// submitBtn.addEventListener ('click', (e) => {
-//     e.preventDefault();
-//     if (email.classList.contains('alert') || email.value === '' ){
-//         console.log('cant submit');
-//     } else if (country.value === 'Select Country'){
-//         console.log('insert country');
-//     }
-// })
-
-const email = 'ksflskjf';
-const emailErr = 'email invalid'
 
 function formValidation (){
-    const checkEmail = (email, emailErr) => {
-        if (email !== '' && !email.includes('@') || !email.includes('.')){
-            console.log(emailErr);
-        }
+    const checkEmail = (email) => {
+        email.addEventListener ('input', () => {
+            if (email.value !== '' && !email.value.includes('@') || !email.value.includes('.')){
+                document.getElementById('email-error').textContent = "email is invalid";
+            } else document.getElementById('email-error').textContent = "";
+        })
     }
+    const checkCountry = (country) => {
+        country.addEventListener ('input', () => {
+            if (country.value === 'Select Country'){
+                document.getElementById('country-error').textContent = "Please select country";
+            } else document.getElementById('country-error').textContent = "";
+        })
+    }
+
+    const checkPostal = (postal) => {
+        postal.addEventListener ('input', () => {
+
+            console.log( !isNaN (postal.value));
+            if ( isNaN (postal.value)){
+                document.getElementById('postal-error').textContent = "Please insert four digits (e.g. 1234)";
+            } else if (postal.value !== ''){
+                document.getElementById('postal-error').textContent = "Please insert your postal";
+            } else document.getElementById('postal-error').textContent = "";
+        })
+    }
+
     return {
-        checkEmail
+        checkEmail,
+        checkCountry,
+        checkPostal
+
     }
 }
 
-formValidation().checkEmail(email, emailErr);
-
+formValidation().checkEmail(emailInput);
+formValidation().checkCountry(countryInput);
+formValidation().checkPostal(postalInput);
 
